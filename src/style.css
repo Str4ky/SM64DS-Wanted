@@ -31,6 +31,10 @@ html {
   border: solid 1px white;
 }
 
+#game {
+  color: #FFFF31;
+}
+
 #score {
   color: #FFFF31;
   font-family: font;

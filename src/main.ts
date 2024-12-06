@@ -9,6 +9,7 @@ import "./style.css";
 const button = document.getElementById("launchGame") as HTMLElement;
 
 let score = 0;
+let hasFoundHead = false;
 
 let previousHead: number;
 
@@ -37,6 +38,8 @@ function start() {
 
   const audio = document.getElementById("audio") as HTMLAudioElement;
 
+  const found = document.getElementById("found") as HTMLAudioElement;
+
   const poster = document.getElementById("poster") as HTMLImageElement;
 
   const chosenHead = chooseHead();
@@ -62,10 +65,14 @@ function start() {
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      head.forEach((h) => {
-        h.update();
-        h.drawImage();
-      });
+      if (!hasFoundHead) {
+        head.forEach((h) => {
+          h.update();
+          h.drawImage();
+        });
+      } else {
+        wantedHead.drawImage();
+      }
     }
 
     window.requestAnimationFrame(moving);
@@ -76,6 +83,10 @@ function start() {
   canvas.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
     const scoreText = document.getElementById("score") as HTMLElement;
+    const gameElement = document.getElementById('game');
+    if(!gameElement) {
+        return;
+    }
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
@@ -92,7 +103,15 @@ function start() {
           scoreText.innerText = `Score: ${score}`;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           head = [];
-          start();
+          head = head.filter((item) => item instanceof WantedHead);
+          hasFoundHead = true;
+          found.play();
+          setTimeout(() => {
+            ctx.fillStyle = "#FFFF31";
+            hasFoundHead = false;
+            start();
+          }, 1500);
+          ctx.fillStyle = "#000000";
         }
       }
     });
