@@ -13,7 +13,7 @@ Follow these steps to set up and run the project locally: (tested with Node.js v
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/your-username/find-luigi-js.git
+   git clone https://github.com/str4ky.github.io/SM64DS-Wanted.git
    cd find-luigi-js
    ```
 
