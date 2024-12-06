@@ -2,21 +2,26 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/luigi.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trouve L.U.I.G.I</title>
+    <meta content="SM64DS Wanted" property="og:title">
+    <meta content="Replay this classic right from your web browser" property="og:description">
+    <meta content="https://str4ky.github.io/SM64DS-Wanted" property="og:url">
+    <meta content="https://str4ky.github.io/SM64DS-Wanted/assets/favicon.png" property="og:image">
+    <meta content="#FFFF31" data-react-helmet="true" name="theme-color">
+    <title>SM64DS Wanted</title>
   </head>
   <body>
     <div id="container">
-      <button id="launchGame">Trouve luigi</button>
+      <img src="/assets/button.png" id="launchGame"></img>
     </div>
     <audio id="audio" src="/assets/audio.wav" loop hidden></audio>
     <footer>
       <p>
-        Merci à Eva pour les sprites et supermattboy pour la musique -
+        Original project:
         <a href="https://github.com/huhulacolle/Find-Luigi-JS" target="_blank"
-          >Github</a
-        >
+          >Find-Luigi-JS</a
+        > by <a href="https://github.com/huhulacolle" target="_blank">Huhulacolle</a>
       </p>
     </footer>
     <script type="module" src="/src/main.ts"></script>

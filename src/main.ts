@@ -1,32 +1,44 @@
-import { Luigi } from "./Luigi";
-import Mario from "./Mario";
+import { FirstHead } from "./FirstHead";
+import SecondHead from "./SecondHead";
 import "./style.css";
 
 const button = document.getElementById("launchGame") as HTMLElement;
 
+let score = 0;
+
 button.addEventListener("click", () => {
   const container = document.getElementById("container") as HTMLElement;
   container.innerHTML =
-    '<canvas id="Game" width="400" height="400"></canvas>';
+    `<img src="./assets/mario_wanted.png" width="400" id="poster"></img>
+    <canvas id="game" width="400" height="400"></canvas>
+    <p id="score">Score: 0</p>`;
   start();
 });
 
 function start() {
-  const canvas = document.getElementById("Game") as HTMLCanvasElement;
+  const canvas = document.getElementById("game") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   const audio = document.getElementById("audio") as HTMLAudioElement;
 
+  const poster = document.getElementById("poster") as HTMLImageElement;
+
+  const chosenHead = Math.floor(Math.random() * 4);
+
   audio.play();
 
-  let head: Mario[] = [];
+  let head: SecondHead[] = [];
 
-  const luigi = new Luigi(ctx, canvas);
+  let faces = ["./assets/mario_wanted.png", "./assets/luigi_wanted.png", "./assets/wario_wanted.png", "./assets/yoshi_wanted.png"];
 
-  head.push(luigi);
+  poster.src = faces[chosenHead];
+
+  const firstHead = new FirstHead(ctx, canvas, chosenHead);
+
+  head.push(firstHead);
 
   for (let i = 0; i < 100; i++) {
-    head.push(new Mario(ctx, canvas));
+    head.push(new SecondHead(ctx, canvas, chosenHead));
   }
 
   const moving = () => {
@@ -47,6 +59,7 @@ function start() {
 
   canvas.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();
+    const scoreText = document.getElementById("score") as HTMLElement;
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
@@ -58,8 +71,9 @@ function start() {
         y >= position.y &&
         y <= position.y + h.getSize()
       ) {
-        if (h instanceof Luigi) {
-          alert("Belle bite");
+        if (h instanceof FirstHead) {
+          score++;
+          scoreText.innerText = `Score: ${score}`;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           head = [];
           start();
