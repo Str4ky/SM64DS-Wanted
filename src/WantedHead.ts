@@ -2,9 +2,9 @@ import mario from "../assets/mario.png";
 import luigi from "../assets/luigi.png";
 import wario from "../assets/wario.png";
 import yoshi from "../assets/yoshi.png";
-import SecondHead from "./SecondHead";
+import OtherHeads from "./OtherHeads";
 
-export class FirstHead extends SecondHead {
+export class WantedHead extends OtherHeads {
   constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, chosenHead: number) {
     super(ctx, canvas, chosenHead);
   }

@@ -3,7 +3,7 @@ import luigi from "../assets/luigi.png";
 import wario from "../assets/wario.png";
 import yoshi from "../assets/yoshi.png";
 
-export default class SecondHead {
+export default class OtherHeads {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
 

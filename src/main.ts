@@ -1,5 +1,5 @@
-import { FirstHead } from "./FirstHead";
-import SecondHead from "./SecondHead";
+import { WantedHead } from "./WantedHead";
+import OtherHeads from "./OtherHeads";
 import "./style.css";
 
 const button = document.getElementById("launchGame") as HTMLElement;
@@ -27,18 +27,18 @@ function start() {
 
   audio.play();
 
-  let head: SecondHead[] = [];
+  let head: OtherHeads[] = [];
 
   let faces = ["./assets/mario_wanted.png", "./assets/luigi_wanted.png", "./assets/wario_wanted.png", "./assets/yoshi_wanted.png"];
 
   poster.src = faces[chosenHead];
 
-  const firstHead = new FirstHead(ctx, canvas, chosenHead);
+  const WantedHead = new WantedHead(ctx, canvas, chosenHead);
 
-  head.push(firstHead);
+  head.push(WantedHead);
 
   for (let i = 0; i < 100; i++) {
-    head.push(new SecondHead(ctx, canvas, chosenHead));
+    head.push(new OtherHeads(ctx, canvas, chosenHead));
   }
 
   const moving = () => {
@@ -71,7 +71,7 @@ function start() {
         y >= position.y &&
         y <= position.y + h.getSize()
       ) {
-        if (h instanceof FirstHead) {
+        if (h instanceof WantedHead) {
           score++;
           scoreText.innerText = `Score: ${score}`;
           ctx.clearRect(0, 0, canvas.width, canvas.height);
