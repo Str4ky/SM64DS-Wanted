@@ -10,6 +10,8 @@ const button = document.getElementById("launchGame") as HTMLElement;
 
 let score = 0;
 
+let previousHead: number;
+
 button.addEventListener("click", () => {
   const container = document.getElementById("container") as HTMLElement;
   container.innerHTML =
@@ -19,6 +21,16 @@ button.addEventListener("click", () => {
   start();
 });
 
+function chooseHead(): number {
+  let chosenHead: number;
+
+  do {
+      chosenHead = Math.floor(Math.random() * 4);
+  } while (chosenHead === previousHead);
+  previousHead = chosenHead;
+  return chosenHead;
+}
+
 function start() {
   const canvas = document.getElementById("game") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -27,7 +39,7 @@ function start() {
 
   const poster = document.getElementById("poster") as HTMLImageElement;
 
-  const chosenHead = Math.floor(Math.random() * 4);
+  const chosenHead = chooseHead();
 
   audio.play();
 
