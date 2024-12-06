@@ -1,5 +1,9 @@
 import { WantedHead } from "./WantedHead";
 import OtherHeads from "./OtherHeads";
+import marioWanted from "../assets/mario_wanted.png";
+import luigiWanted from "../assets/luigi_wanted.png";
+import warioWanted from "../assets/wario_wanted.png";
+import yoshiWanted from "../assets/yoshi_wanted.png";
 import "./style.css";
 
 const button = document.getElementById("launchGame") as HTMLElement;
@@ -29,7 +33,7 @@ function start() {
 
   let head: OtherHeads[] = [];
 
-  let faces = ["./assets/mario_wanted.png", "./assets/luigi_wanted.png", "./assets/wario_wanted.png", "./assets/yoshi_wanted.png"];
+  let faces = [marioWanted, luigiWanted, warioWanted, yoshiWanted];
 
   poster.src = faces[chosenHead];
 
