@@ -48,6 +48,10 @@ footer {
   bottom: 0;
 }
 
+footer p {
+  margin: 12px;
+}
+
 footer a {
   color: #289ce0;
 }
