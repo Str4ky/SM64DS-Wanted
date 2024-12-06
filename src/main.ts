@@ -33,9 +33,9 @@ function start() {
 
   poster.src = faces[chosenHead];
 
-  const WantedHead = new WantedHead(ctx, canvas, chosenHead);
+  const wantedHead = new WantedHead(ctx, canvas, chosenHead);
 
-  head.push(WantedHead);
+  head.push(wantedHead);
 
   for (let i = 0; i < 100; i++) {
     head.push(new OtherHeads(ctx, canvas, chosenHead));
