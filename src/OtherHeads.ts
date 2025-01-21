@@ -15,7 +15,6 @@ export default class OtherHeads {
   private y: number;
   private directionX: number;
   private directionY: number;
-  protected speed: number;
   
   protected image: HTMLImageElement;
 
@@ -28,7 +27,6 @@ export default class OtherHeads {
     this.y = Math.random() * (this.canvas.height - this.size);
     this.directionX = this.initRandomDirection();
     this.directionY = this.initRandomDirection();
-    this.speed = 3;
     this.image = new Image();
     this.initImage();
   }
@@ -58,8 +56,8 @@ export default class OtherHeads {
   }
 
   update(): void {
-    this.x += this.directionX / this.speed;
-    this.y += this.directionY / this.speed;
+    this.x += this.directionX;
+    this.y += this.directionY;
 
     if (this.x > this.canvas.width) {
       this.x = -this.size;
