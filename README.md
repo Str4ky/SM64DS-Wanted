@@ -14,7 +14,7 @@ Follow these steps to set up and run the project locally: (tested with Node.js v
 
    ```sh
    git clone https://github.com/str4ky.github.io/SM64DS-Wanted.git
-   cd find-luigi-js
+   cd sm64ds-wanted
    ```
 
 1. **Install dependencies:**
