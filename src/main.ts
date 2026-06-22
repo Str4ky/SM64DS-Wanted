@@ -60,14 +60,18 @@ function start() {
     head.push(new OtherHeads(ctx, canvas, chosenHead));
   }
 
-  const moving = () => {
+  let lastTime = performance.now();
+
+  const moving = (currentTime: number) => {
+    const deltaTime = (currentTime - lastTime) / 1000;
+    lastTime = currentTime;
     if (ctx) {
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       if (!hasFoundHead) {
         head.forEach((h) => {
-          h.update();
+          h.update(deltaTime);
           h.drawImage();
         });
       } else {
@@ -78,7 +82,7 @@ function start() {
     window.requestAnimationFrame(moving);
   };
 
-  moving();
+  requestAnimationFrame(moving);
 
   canvas.addEventListener("click", (event) => {
     const rect = canvas.getBoundingClientRect();

@@ -9,6 +9,8 @@ export default class OtherHeads {
 
   private size: number;
 
+  private speed: number;
+
   protected chosenHead: number;
 
   private x: number;
@@ -22,6 +24,7 @@ export default class OtherHeads {
     this.ctx = ctx;
     this.canvas = canvas;
     this.size = 40;
+    this.speed = 60;
     this.chosenHead = chosenHead;
     this.x = Math.random() * (this.canvas.width - this.size);
     this.y = Math.random() * (this.canvas.height - this.size);
@@ -55,9 +58,9 @@ export default class OtherHeads {
     this.ctx.drawImage(this.image, this.x, this.y, this.size, this.size);
   }
 
-  update(): void {
-    this.x += this.directionX;
-    this.y += this.directionY;
+  update(deltaTime: number): void {
+    this.x += this.directionX * this.speed *deltaTime;
+    this.y += this.directionY * this.speed *deltaTime;
 
     if (this.x > this.canvas.width) {
       this.x = -this.size;
